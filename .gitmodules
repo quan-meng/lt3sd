@@ -1,0 +1,6 @@
+[submodule "third_parties/front3d_toolbox"]
+	path = third_parties/front3d_toolbox
+	url = https://github.com/3D-FRONT-FUTURE/3D-FRONT-ToolBox.git
+[submodule "third_parties/sdf-gen"]
+	path = third_parties/sdf-gen
+	url = https://github.com/nihalsid/sdf-gen.git

@@ -1,0 +1,9 @@
+log/
+wandb/
+.vscode/
+__pycache__/
+.gitignore
+*.pyc
+*.log
+*.obj
+*.sh
