@@ -16,7 +16,7 @@ To synthesize large-scale scenes with varying sizes, we train our diffusion mode
 ## Installation
 ```
 # Clone the repo:
-git clone https://github.com/quan-meng/lt3sd.git
+git clone --recursive https://github.com/quan-meng/lt3sd.git
 
 # Create a conda environment
 conda create --name lt3sd python=3.10; conda activate lt3sd
