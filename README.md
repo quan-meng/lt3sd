@@ -47,13 +47,13 @@ Note that some scenes with incorrect furniture scales will cause OOM error and b
 ## Training
 ### First Stage 
 ```
-python first_stage.py --stage.levels 'tudf_0p088_0p176' 'tudf_0p022_0p088'
+python first_stage.py --slurm.slurm_job_name 'train_1st_stage' --slurm.gpus_per_node 1 --slurm.slurm_constraint '[rtx_a6000]' --slurm.nodes 2 --levels 'tudf_0p088_0p176' 'tudf_0p022_0p088'
 ```
 Remember to specify the training log path `FirstStage.log_dir` in `configs/opt`. The GPU memory cost is ~13GB with batch_size of 4. 
 
 ### Second Stage
 ```
-python second_stage.py --slurm.slurm_job_name 'train_1st_stage' --slurm.gpus_per_node 1 --slurm.slurm_constraint '[rtx_a6000]' --slurm.nodes 2 --first_stage_dir <FIRST-STAGE-DIR> --levels 'tudf_0p088_0p176' 'tudf_0p022_0p088' --batch_size 8 --model.chunk_shape 32 16 32 --model.start_level 'tudf_0p088_0p176' model.first-stage-config:ae
+python second_stage.py --slurm.slurm_job_name 'train_2nd_stage' --slurm.gpus_per_node 1 --slurm.slurm_constraint '[rtx_a6000]' --slurm.nodes 2 --first_stage_dir <FIRST-STAGE-DIR> --levels 'tudf_0p088_0p176' 'tudf_0p022_0p088' --batch_size 8 --model.chunk_shape 32 16 32 --model.start_level 'tudf_0p088_0p176' model.first-stage-config:ae
 ```
 Where you replace `<FIRST-STAGE-DIR>` with the log_dir of the first stage. The GPU memory cost is ~25GB with batch_size of 8. 
 
