@@ -7,3 +7,6 @@ __pycache__/
 *.log
 *.obj
 *.sh
+mydata/
+sdf_gen
+checkpoints

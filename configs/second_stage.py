@@ -35,7 +35,7 @@ class DDPM:
     unet_config: UnetConfig
     first_stage_config: AE
 
-    name: Literal["pyramid_generation"] = "pyramid_generation"
+    name: str = "second_stage"
     target: str = "models.second_stage.ddpm.Net"
     ckpt_dir: Optional[str] = None  # Use only ckpt_dict
     linear_start: float = 0.0015  # 0.0015

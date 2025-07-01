@@ -26,7 +26,7 @@ pip install -r requirements.txt
 ```
 
 ## Data Processing
-First, you need to apply for the [3D-FUTURE](https://tianchi.aliyun.com/specials/promotion/alibaba-3d-scene-dataset#) dataset and unzip `3D-FUTURE-model.zip;`, `3D-FRONT-texture.zip`, and `3D-FRONT.zip`. Remember to modify the output directory `Front3D.root_dir` in `configs/dataset` before running the following commands. Then run the following command to export the scene meshes and compute TUDF voxel grids to `Front3D.root_dir`. 
+First, you need to apply for the [3D-FUTURE](https://tianchi.aliyun.com/specials/promotion/alibaba-3d-scene-dataset#) dataset and unzip `3D-FUTURE-model.zip;`, `3D-FRONT-texture.zip`, and `3D-FRONT.zip`. Remember to modify the output directory `Front3D.root_dir` in `configs/dataset`. Then, run the following command to export the scene meshes and compute TUDF voxel grids to `Front3D.root_dir`. 
 ```
 # Export scene meshes
 python data/export_mesh.py export_houses --output_semantic_bbox --add_floor 
@@ -58,14 +58,18 @@ python second_stage.py --slurm.slurm_job_name 'train_2nd_stage' --slurm.gpus_per
 Where you replace `<FIRST-STAGE-DIR>` with the log_dir of the first stage. The GPU memory cost is ~25GB with batch_size of 8. 
 
 ## Pretrained Models
-TODO
+The pretrained checkpoint is provided [here](https://tumde-my.sharepoint.com/:f:/g/personal/quan_meng_tum_de/EpNW4aHs_s5It4m-I2rHzKcBrQ069YQe7U53-U1zWKnhXA?e=JnpSs2):
+- First Stage: tudf_0p088_0p176 and tudf_0p022_0p088
+- Second Stage: TODO
+
+Please download the checkpoints and unzip it to ./checkpoints. 
 
 ## Generation
 You can now generate new scenes with pretrained models. To generate a batch of 3D scenes with the shape of (256, 128, 256)
 ```
 python second_stage.py --slurm.slurm_job_name 'train_2nd_stage' --slurm.gpus_per_node 1 --slurm.slurm_constraint '[rtx_a6000]' --slurm.nodes 1 --first_stage_dir <FIRST-STAGE-DIR> --levels 'tudf_0p088_0p176' 'tudf_0p022_0p088' --batch_size 8 --resume <SECOND-STAGE-DIR> --model.chunk_shape 32 16 32 --model.start_level 'tudf_0p088_0p176' model.first-stage-config:ae task:generation --task.scene_shape 256 128 256
 ```
-Where you replace `<FIRST-STAGE-DIR>` with the log_dir of the first stage and `<SECOND-STAGE-DIR>` with log_dir of the second stage.
+Where you replace `<FIRST-STAGE-DIR>` with the log_dir of the first stage (./checkpoints/240711-202423) and `<SECOND-STAGE-DIR>` with log_dir of the second stage.
 
 ## Citation
 If you find our work useful in your research, please consider citing:
