@@ -58,7 +58,7 @@ python second_stage.py --slurm.slurm_job_name 'train_2nd_stage' --slurm.gpus_per
 Where you replace `<FIRST-STAGE-DIR>` with the log_dir of the first stage. The GPU memory cost is ~25GB with batch_size of 8. 
 
 ## Pretrained Models
-The pretrained checkpoint is provided [here](https://tumde-my.sharepoint.com/:f:/g/personal/quan_meng_tum_de/EpNW4aHs_s5It4m-I2rHzKcBrQ069YQe7U53-U1zWKnhXA?e=JnpSs2):
+The pretrained checkpoint is provided [here](https://1drv.ms/f/c/e762fb0a44e578db/Eis8AmcZJ1BPgen4-3zCvrwBu88wl9q7V-wChTM3m1fbOQ?e=b4VCul):
 - First Stage: tudf_0p088_0p176 and tudf_0p022_0p088
 - Second Stage: TODO
 
